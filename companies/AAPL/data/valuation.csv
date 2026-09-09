@@ -1,0 +1,5 @@
+scenario,method,assumption_set,implied_equity_value,shares,implied_price,notes
+Bear,Forward P/E,bear,3482.0,14.65,237.7,FY2027 EPS $8.64 times 27.5x; memory-cost and demand downside.
+Base,Forward P/E,base,4671.3,14.60,320.0,FY2027 EPS $9.33 times 34.3x; excludes tariff-refund benefit.
+Bull,Forward P/E,bull,5402.1,14.45,373.8,FY2027 EPS $10.10 times 37.0x; premium share and Services upside.
+Base,Illustrative DCF,base,3462.0,14.59418,237.2,7.5% WACC and 3.0% terminal growth using FY2026E-FY2030E FCF of $130.5B-$174.9B; inputs are analyst assumptions.

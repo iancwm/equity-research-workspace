@@ -1,0 +1,10 @@
+company_name: Apple Inc.
+ticker: AAPL
+exchange: NASDAQ
+benchmark: S&P 500
+base_currency: USD
+rating_convention: Overweight/Equal-weight/Underweight
+status: preliminary_initiation
+created_at: '2026-09-09'
+last_research_update: '2026-09-09'
+last_publication: ''

@@ -1,0 +1,93 @@
+base_case:
+  - id: A-001
+    name: FY2026 revenue
+    base: 477.1
+    bear: 472.6
+    bull: 481.7
+    units: USD billions
+    owner_node: company_overlay
+    rationale: Nine-month reported revenue of $364.4B plus a $112.7B September-quarter estimate, the midpoint of reported 9%-11% management outlook.
+    source_ids: [S-001, S-008]
+    last_updated: '2026-09-09'
+    status: active
+  - id: A-002
+    name: FY2027 revenue growth
+    base: 6.5
+    bear: 3.5
+    bull: 10.0
+    units: percent
+    owner_node: company_overlay
+    rationale: Base case assumes Services remains above company growth and premium iPhone share offsets weaker global unit demand; no external consensus is used.
+    source_ids: [S-005]
+    last_updated: '2026-09-09'
+    status: active
+  - id: A-003
+    name: FY2027 EBIT margin
+    base: 32.1
+    bear: 30.8
+    bull: 33.0
+    units: percent
+    owner_node: company_overlay
+    rationale: Anchored to FY2025 32.0% EBIT margin; base case excludes one-time tariff-refund benefit but retains modest Services-mix and scale benefit. Full forecast mechanics are in data/scenario-forecast.csv.
+    source_ids: [S-001, S-002, S-003, S-008]
+    last_updated: '2026-09-09'
+    status: active
+  - id: A-004
+    name: FY2027 diluted shares
+    base: 14.60
+    bear: 14.65
+    bull: 14.50
+    units: billions
+    owner_node: company_overlay
+    rationale: Continued net share repurchases, with the pace moderated by a larger equity base and valuation.
+    source_ids: [S-001, S-003]
+    last_updated: '2026-09-09'
+    status: active
+  - id: A-005
+    name: Equity valuation multiple on FY2027 EPS
+    base: 34.3
+    bear: 27.5
+    bull: 37.0
+    units: x
+    owner_node: valuation
+    rationale: Scenario convention, not a consensus multiple. It recognizes both premium cash-flow quality and the risk that a 36.1x trailing P/E de-rates if durable growth slows.
+    source_ids: [S-004]
+    last_updated: '2026-09-09'
+    status: active
+bear_case:
+  probability: 0.25
+  description: Memory cost inflation and slower premium-device demand compress margin; Services growth does not offset hardware weakness.
+bull_case:
+  probability: 0.25
+  description: Premium share gains, a successful product cycle and sustained Services growth lift revenue and operating leverage.
+scenario_overrides:
+  base_case_probability: 0.50
+  valuation_date: '2026-09-09'
+  tax_rate: 16.5
+  long_term_growth_rate: 3.0
+  dcf_wacc: 7.5
+  dcf_terminal_year: FY2030E
+  dcf_net_cash: 62.173
+  scenario_probabilities:
+    bear: 0.25
+    base: 0.50
+    bull: 0.25
+  forecast_source: data/scenario-forecast.csv
+  forecast_method:
+    revenue: Prior-year revenue multiplied by one plus scenario revenue growth.
+    ebit: Revenue multiplied by scenario EBIT margin.
+    net_income: EBIT multiplied by one minus 16.5% tax rate; other income is conservatively set to zero in forecast years.
+    eps: Net income divided by scenario diluted shares.
+    cfo: Revenue multiplied by scenario CFO margin.
+    capex: CFO minus FCF, with FCF set from the scenario FCF margin.
+    fcf: CFO minus capex.
+  FQ4_2026_management_outlook:
+    revenue_growth_percent: [9.0, 11.0]
+    reported_gross_margin_percent: [47.0, 48.0]
+    tariff_refund_benefit_percentage_points: 1.0
+    adjusted_gross_margin_percent: [46.0, 47.0]
+    operating_expense_USD_billions: [19.1, 19.4]
+    other_income_expense_USD_millions: 350
+    tax_rate_percent: 16.5
+    sources: [S-008]
+    notes: Management also expects a 2.5-point sequential FX headwind and higher supply-constraint impact across iPhone, Mac and iPad.
