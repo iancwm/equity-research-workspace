@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Source Record",
+  "type": "object",
+  "required": [
+    "source_id",
+    "title",
+    "source_type",
+    "publisher",
+    "url_or_ref",
+    "publication_date",
+    "accessed_at"
+  ],
+  "properties": {
+    "source_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "url_or_ref": {
+      "type": "string"
+    },
+    "publication_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observation_period": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accessed_at": {
+      "type": "string"
+    },
+    "primary_source": {
+      "type": "boolean"
+    },
+    "quality_tier": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dependency Graph",
+  "type": "object",
+  "required": [
+    "nodes"
+  ],
+  "properties": {
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "depends_on"
+        ],
+        "properties": {
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "outputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "enum": [
+              "fresh",
+              "stale",
+              "not_run"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+source_priority:
+  tier_1:
+    - company_filings
+    - company_investor_relations
+    - regulator
+    - official_statistics
+  tier_2:
+    - earnings_transcripts
+    - reputable_market_data
+    - industry_associations
+    - rating_agencies
+  tier_3:
+    - reputable_financial_press
+    - specialist_research
+    - expert_commentary
+  tier_4:
+    - aggregators
+    - forums
+    - social_media
+
+rules:
+  primary_for_reported_financials: true
+  record_publication_date: true
+  record_observation_period: true
+  preserve_conflicting_evidence: true
+  distinguish_fact_from_inference: true
+  allow_unsourced_assumptions: true
+  assumptions_must_be_labeled: true
