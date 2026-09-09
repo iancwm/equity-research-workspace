@@ -1,0 +1,15 @@
+company_name: Apple Inc.
+ticker: AAPL
+exchange: NASDAQ
+industry: Consumer hardware and digital services
+geography: Global, with the United States, Europe and Greater China material
+research_date: '2026-09-09'
+benchmark: S&P 500
+base_currency: USD
+forecast_horizon_years: 3
+rating_convention: Overweight/Equal-weight/Underweight
+special_questions:
+  - Can high-single-digit earnings growth and Services mix sustain the current valuation?
+  - How much of FY2026's growth and margin expansion is transient tariff-refund benefit versus durable product mix?
+  - Can Apple preserve premium-device economics as memory costs rise and EU platform terms change?
+existing_state: false

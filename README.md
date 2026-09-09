@@ -51,7 +51,7 @@ Later modules receive the relevant ledger state, assumptions, and required evide
 ## Start here
 
 1. Read `SKILL.md`.
-2. Create a company workspace with `python scripts/init_company.py ACN "Accenture plc"`.
+2. Create a company workspace with `python3 scripts/init_company.py ACN "Accenture plc"`.
 3. Fill or infer `companies/ACN/project.yaml` and `state/research-context.yaml`.
 4. Choose a workflow from `workflows/`.
 5. Use `scripts/validate_workspace.py companies/ACN` before publication.

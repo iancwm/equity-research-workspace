@@ -1,0 +1,41 @@
+nodes:
+  source_ingestion:
+    depends_on: []
+    outputs: [sources/registry.csv, state/ledger.jsonl]
+    status: fresh
+  economic_engine:
+    depends_on: [source_ingestion]
+    outputs: [analysis/01-economic-engine.md]
+    status: fresh
+  macro_transmission:
+    depends_on: [economic_engine]
+    outputs: [analysis/02-macro-transmission.md]
+    status: fresh
+  value_chain_pricing_power:
+    depends_on: [economic_engine]
+    outputs: [analysis/03-value-chain-pricing-power.md]
+    status: fresh
+  cycle_vs_structure:
+    depends_on: [economic_engine, macro_transmission, value_chain_pricing_power]
+    outputs: [analysis/04-cycle-vs-structure.md]
+    status: fresh
+  company_overlay:
+    depends_on: [source_ingestion, economic_engine, cycle_vs_structure]
+    outputs: [analysis/07-company-overlay.md, data/forecast.csv, data/scenario-forecast.csv]
+    status: fresh
+  valuation:
+    depends_on: [company_overlay, cycle_vs_structure]
+    outputs: [analysis/05-valuation-expectations.md, data/valuation.csv]
+    status: fresh
+  strategist_dashboard:
+    depends_on: [cycle_vs_structure, company_overlay, valuation]
+    outputs: [analysis/06-strategist-dashboard.md, outputs/dashboard.md]
+    status: fresh
+  synthesis:
+    depends_on: [strategist_dashboard]
+    outputs: [outputs/initiation-of-coverage.md]
+    status: fresh
+  qa:
+    depends_on: [synthesis]
+    outputs: [analysis/qa-review.md]
+    status: fresh

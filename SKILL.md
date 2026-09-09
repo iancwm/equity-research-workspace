@@ -1,6 +1,5 @@
 ---
 name: persistent-equity-research
-version: 0.1.0
 description: Build and maintain a persistent institutional equity-research workspace for a public company. Use for initiation of coverage, thesis formation, earnings updates, valuation work, scenario analysis, catalyst/risk monitoring, and publication. Preserve sourced evidence, assumptions, ledger conclusions, dependencies, and editable outputs so subsequent work selectively recomputes affected analysis instead of restarting from scratch.
 ---
 
@@ -54,7 +53,7 @@ companies/<TICKER>/
 If the workspace does not exist, initialize it from `templates/company/` or run:
 
 ```bash
-python scripts/init_company.py <TICKER> "<Company Name>"
+python3 scripts/init_company.py <TICKER> "<Company Name>"
 ```
 
 ## Workflow router
