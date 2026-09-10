@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Context",
+  "type": "object",
+  "required": [
+    "company_name",
+    "ticker",
+    "exchange",
+    "industry",
+    "geography",
+    "research_date",
+    "benchmark",
+    "base_currency",
+    "forecast_horizon_years",
+    "rating_convention",
+    "special_questions",
+    "existing_state"
+  ],
+  "properties": {
+    "company_name": {"type": "string", "minLength": 1},
+    "ticker": {"type": "string", "minLength": 1, "pattern": "^[A-Z0-9._-]+$"},
+    "exchange": {"type": "string"},
+    "industry": {"type": ["string", "null"]},
+    "geography": {"type": ["string", "null"]},
+    "research_date": {"type": "string", "format": "date"},
+    "benchmark": {"type": ["string", "null"]},
+    "base_currency": {"type": "string", "minLength": 3},
+    "forecast_horizon_years": {"type": "integer", "minimum": 1, "maximum": 10},
+    "rating_convention": {"type": "string", "minLength": 1},
+    "special_questions": {"type": "array", "items": {"type": "string"}},
+    "existing_state": {"type": "boolean"}
+  },
+  "additionalProperties": false
+}

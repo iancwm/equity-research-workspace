@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Equity Research Workspace Project",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "company_name",
+    "ticker",
+    "exchange",
+    "benchmark",
+    "base_currency",
+    "rating_convention",
+    "status",
+    "created_at",
+    "last_research_update",
+    "last_publication"
+  ],
+  "properties": {
+    "schema_version": {"const": 2},
+    "company_name": {"type": "string", "minLength": 1},
+    "ticker": {"type": "string", "minLength": 1, "pattern": "^[A-Z0-9._-]+$"},
+    "exchange": {"type": "string"},
+    "benchmark": {"type": "string"},
+    "base_currency": {"type": "string", "minLength": 3},
+    "rating_convention": {"type": "string", "minLength": 1},
+    "status": {"enum": ["new", "active", "stale", "archived"]},
+    "created_at": {"type": "string", "format": "date"},
+    "last_research_update": {"type": ["string", "null"], "format": "date"},
+    "last_publication": {"type": ["string", "null"], "format": "date"}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,2 @@
+source_id,title,source_type,publisher,url_or_ref,publication_date,observation_period,accessed_at,primary_source,quality_tier,notes
+SRC-0001,Synthetic annual report,company_filing,Acme Components,fixture:annual-report,2025-01-02,FY2024,2025-01-03,true,1,Synthetic fixture only.

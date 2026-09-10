@@ -209,6 +209,16 @@ tempCodeRunnerFile.py
 # PyPI configuration file
 .pypirc
 
+# Generated skill packages, publication output, and live-eval output
+dist/
+output/
+evals/results/
+
+# User research workspaces belong outside the installed skill
+companies/
+research/
+research-workspaces/
+
 # Marimo
 marimo/_static/
 marimo/_lsp/

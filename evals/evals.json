@@ -1,0 +1,80 @@
+{
+  "skill_name": "persistent-equity-research",
+  "evals": [
+    {
+      "id": 1,
+      "name": "quick-view-without-persistence",
+      "prompt": "Give me a quick first-pass investor view on the fictional listed company Acme Components. I want the debate, what seems priced in, and the questions worth researching, but do not create a workspace.",
+      "expected_output": "Selects Quick View, provides early framing and hypotheses, and does not initialize persistent state.",
+      "assertions": [
+        "Uses the smallest workflow",
+        "Includes a preliminary stance and priced-in framing",
+        "Does not claim persistence"
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "full-initiation-external-workspace",
+      "prompt": "Initiate coverage on the fictional Acme Components and keep the research in {workspace}. Use only these synthetic facts: FY2024 revenue was 100 units, EBIT margin was 20%, and recurring revenue was 60% of sales. Label them as user-supplied evidence and make the state reusable for later updates.",
+      "expected_output": "Selects Full Initiation, creates or uses the external workspace, records source provenance, and follows the analytical dependency order.",
+      "assertions": [
+        "Writes only under the requested workspace",
+        "Separates observations, assumptions, and conclusions",
+        "Surfaces the investor debate before final synthesis",
+        "Runs validation and QA before claiming readiness"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "earnings-update-selective-recompute",
+      "setup": "initialized_workspace",
+      "prompt": "Update the existing research in {workspace} for a new quarter in which Acme cut margin guidance. Preserve prior history and recompute only affected work.",
+      "expected_output": "Selects Update, supersedes affected evidence, marks dependent nodes stale, and leaves unrelated stable analysis alone.",
+      "assertions": [
+        "Does not silently overwrite ledger history",
+        "Explains which nodes changed and which did not",
+        "Updates downstream thesis only if recommendation-relevant"
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "scenario-preserves-base",
+      "setup": "initialized_workspace",
+      "prompt": "In {workspace}, show the effect of a 100 basis point higher WACC. Do not fetch new sources and do not change the base case.",
+      "expected_output": "Selects Scenario, records an override separately, recomputes valuation and downstream conclusions, and preserves base assumptions.",
+      "assertions": [
+        "Does not browse for unrelated evidence",
+        "Does not mutate base-case assumptions",
+        "Reports assumption and valuation deltas"
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "publish-from-state",
+      "setup": "initialized_workspace",
+      "prompt": "Render an editable initiation report from the validated state in {workspace}. Do not redo stable industry research.",
+      "expected_output": "Selects Publish/Edit, renders from validated state, and avoids unnecessary research or recomputation.",
+      "assertions": [
+        "Reads validated state rather than conversation history",
+        "Keeps substantive state changes separate from wording edits",
+        "Does not introduce unsupported claims during synthesis"
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "name": "negative-narrow-fact",
+      "prompt": "What does free cash flow mean in one sentence?",
+      "expected_output": "Answers the narrow factual question directly without invoking or describing the full research pipeline.",
+      "assertions": [
+        "Does not initialize a workspace",
+        "Does not run the full skill workflow"
+      ],
+      "files": []
+    }
+  ]
+}

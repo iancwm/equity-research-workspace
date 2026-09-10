@@ -1,0 +1,13 @@
+company_name: Acme Components plc
+ticker: ACME
+exchange: TEST
+industry: Synthetic components
+geography: Global
+research_date: '2025-01-03'
+benchmark: Synthetic 100
+base_currency: USD
+forecast_horizon_years: 3
+rating_convention: Overweight/Equal-weight/Underweight
+special_questions:
+  - Can recurring revenue offset the cyclical slowdown?
+existing_state: true
