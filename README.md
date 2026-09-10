@@ -35,6 +35,7 @@ Install or upload the skill using [the platform instructions](docs/installation.
 - [Workspace v2](docs/workspace-v2.md) defines the persisted data contract and v1 migration.
 - [Installation](docs/installation.md) covers Claude, Codex, hosted APIs, and generic clients.
 - [Contributing](CONTRIBUTING.md) covers authoring, tests, evals, and releases.
+- [Behavioral evals](evals/README.md) explains optional live comparison runs and result review.
 - [Security](SECURITY.md) describes the trust boundary for skills and research sources.
 - [Changelog](CHANGELOG.md) tracks the portable contract, and the [2.0.0 release verification](docs/releases/2.0.0.md) records external smoke-test status.
 
