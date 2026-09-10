@@ -1,0 +1,8 @@
+contradictions:
+  - id: CON-0001
+    topic: Demand signal
+    evidence_for: Orders increased.
+    evidence_against: Backlog declined.
+    source_ids: [SRC-0001]
+    resolution: Monitor the next quarter.
+    status: unresolved

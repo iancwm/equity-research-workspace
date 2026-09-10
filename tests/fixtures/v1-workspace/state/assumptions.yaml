@@ -1,0 +1,13 @@
+base_case:
+  - id: ASM-0001
+    name: Revenue growth
+    base: 5.0
+    bear: 1.0
+    bull: 8.0
+    units: percent
+    owner_node: company_overlay
+    rationale: Synthetic migration fixture.
+    source_ids: [SRC-0001]
+    last_updated: '2025-01-03'
+    status: active
+scenario_overrides: {}

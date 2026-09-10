@@ -1,0 +1,16 @@
+{
+  "name": "equity-research-skills",
+  "description": "Portable skills for evidence-backed institutional equity research",
+  "owner": {
+    "name": "iancwm"
+  },
+  "plugins": [
+    {
+      "name": "equity-research",
+      "source": "./",
+      "description": "Persistent, evidence-backed institutional equity research",
+      "version": "2.0.0",
+      "strict": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "company_name": "",
+  "ticker": "",
+  "exchange": "",
+  "industry": null,
+  "geography": null,
+  "research_date": "",
+  "benchmark": null,
+  "base_currency": "USD",
+  "forecast_horizon_years": 3,
+  "rating_convention": "Overweight/Equal-weight/Underweight",
+  "special_questions": [],
+  "existing_state": false
+}

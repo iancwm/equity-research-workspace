@@ -1,0 +1,4 @@
+interface:
+  display_name: "Persistent Equity Research"
+  short_description: "Build and update evidence-backed equity research"
+  default_prompt: "Use $persistent-equity-research to build or update a persistent research workspace for this company."

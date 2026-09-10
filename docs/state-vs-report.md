@@ -1,14 +1,5 @@
-# Research state vs report
+# Research State and Reports
 
-A report answers: "What do we believe today?"
+A report answers what the analyst believes today. The research state also records why, which assumptions drive the view, what would falsify it, which conclusions depend on each fact, what became stale, and what changed since the prior publication.
 
-Research state additionally answers:
-
-- Which facts support that belief?
-- Which assumptions drive the model?
-- Which conclusions depend on each fact?
-- What would falsify the thesis?
-- Which parts became stale after new information?
-- What changed since the prior publication?
-
-Therefore the report should be regenerated from state, not used as the state itself.
+For that reason, substantive edits update state first and regenerate affected report sections. Wording-only edits may remain publication-only changes.

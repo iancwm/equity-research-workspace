@@ -1,0 +1,1 @@
+{"id":"OBS-0001","record_type":"observed_fact","statement":"Acme reported synthetic revenue of 100 units.","metric":"revenue","value":100,"unit":"units","period":"FY2024","as_of_date":"2024-12-31","source_ids":["SRC-0001"],"confidence":"high","nodes":["source_ingestion"],"depends_on":[],"supersedes":null,"status":"active","notes":"Synthetic fixture only."}

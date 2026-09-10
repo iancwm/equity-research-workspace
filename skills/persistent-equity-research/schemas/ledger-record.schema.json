@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Equity Research Ledger Record",
+  "type": "object",
+  "required": ["id", "record_type", "statement", "confidence", "status"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "record_type": {
+      "enum": [
+        "observed_fact",
+        "derived_metric",
+        "assumption",
+        "analytical_conclusion",
+        "risk",
+        "catalyst",
+        "falsification",
+        "research_gap"
+      ]
+    },
+    "statement": {"type": "string", "minLength": 1},
+    "metric": {"type": ["string", "null"]},
+    "value": {},
+    "unit": {"type": ["string", "null"]},
+    "period": {"type": ["string", "null"]},
+    "as_of_date": {"type": ["string", "null"], "format": "date"},
+    "source_ids": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "nodes": {"type": "array", "items": {"type": "string"}},
+    "depends_on": {"type": "array", "items": {"type": "string"}},
+    "supersedes": {"type": ["string", "null"]},
+    "status": {"enum": ["active", "stale", "superseded", "unresolved"]},
+    "notes": {"type": ["string", "null"]}
+  },
+  "additionalProperties": false
+}

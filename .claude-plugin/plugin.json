@@ -1,0 +1,11 @@
+{
+  "name": "equity-research",
+  "description": "Persistent, evidence-backed institutional equity research",
+  "version": "2.0.0",
+  "author": {
+    "name": "iancwm"
+  },
+  "repository": "https://github.com/iancwm/equity-research-workspace",
+  "license": "GPL-3.0-only",
+  "skills": "./skills/"
+}
