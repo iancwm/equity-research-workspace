@@ -4,7 +4,7 @@ description: Build and maintain a persistent, evidence-backed equity-research wo
 license: GPL-3.0-only
 compatibility: Requires Python 3.9+ for workspace scripts. Filesystem read/write access enables persistence; source or web access enables fresh research.
 metadata:
-  version: "2.0.0"
+  version: "2.1.0"
 ---
 
 # Persistent Equity Research

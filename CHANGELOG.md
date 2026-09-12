@@ -2,6 +2,14 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [2.1.0] - 2026-09-12
+
+### Added
+
+- Sector primer skill for explaining industry structure, sector analytics, and comparable companies.
+- Persistent sector workspace initializer and structural validator.
+- Automated tests for sector workspace creation and validation paths.
+
 ## [2.0.0] - 2026-09-10
 
 ### Added
