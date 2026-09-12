@@ -5,8 +5,8 @@
 The project deliberately separates three locations:
 
 1. **Repository root** — development documentation, tests, evals, release tools, and platform adapters.
-2. **Installed skill root** — the immutable `persistent-equity-research/` package containing `SKILL.md`, references, schemas, scripts, and workspace assets.
-3. **Research workspace root** — user-selected, mutable company state and publications.
+2. **Installed skill roots** — immutable packages such as `persistent-equity-research/` and `sector-primer/`, each containing its own `SKILL.md`, references, scripts, and metadata.
+3. **Research workspace root** — user-selected, mutable company or sector state and publications.
 
 Skill scripts resolve bundled resources from their own file location. They accept the research workspace as an explicit argument and never assume the current directory or write back into the installation.
 
@@ -23,6 +23,8 @@ Atomic ledger records, assumptions, contradictions, gaps, and the dependency gra
 ### Analysis
 
 Economic engine, macro transmission, value chain and pricing power, cycle versus structure, company forecasts, valuation, and the strategist dashboard.
+
+For a sector primer, this layer covers sector taxonomy, value-chain economics, structural and cyclical drivers, sector dashboards, and comparable-company benchmarking.
 
 ### Publication
 

@@ -1,8 +1,8 @@
 # Persistent Equity Research
 
-A portable Agent Skill for building and maintaining evidence-backed institutional equity research. It preserves sources, atomic facts, assumptions, contradictions, analytical dependencies, and editable publications so an update can recompute what changed instead of restarting the research.
+A portable set of Agent Skills for evidence-backed institutional equity research. The skills preserve sources, atomic facts, assumptions, contradictions, analytical dependencies, and editable publications so an update can recompute what changed instead of restarting the research.
 
-The repository contains one canonical skill package at `skills/persistent-equity-research/`. Claude, Codex, hosted Skills APIs, and other [Agent Skills](https://agentskills.io/specification) clients consume that same package.
+The repository contains two canonical skill packages: `skills/persistent-equity-research/` for company research and `skills/sector-primer/` for sector education and peer benchmarking. Claude, Codex, hosted Skills APIs, and other [Agent Skills](https://agentskills.io/specification) clients can consume either package.
 
 ## Five-minute start
 
@@ -27,7 +27,21 @@ Install or upload the skill using [the platform instructions](docs/installation.
 - selective recomputation after evidence or assumptions change;
 - valuation and bear/base/bull scenarios;
 - dashboards, update notes, and initiation reports;
+- sector primers covering industry dynamics, sector analytics, and comparable companies;
 - structural validation and a separate analytical QA pass.
+
+For a sector primer, initialize a dedicated workspace and validate it before publication:
+
+```bash
+python3 skills/sector-primer/scripts/init_sector_workspace.py \
+  --workspace research/semiconductors \
+  --sector-name "Semiconductors" \
+  --geography "Global"
+
+python3 skills/sector-primer/scripts/validate_sector_workspace.py research/semiconductors
+```
+
+Read [the sector-primer skill](skills/sector-primer/SKILL.md) for its workflow and data contract.
 
 ## Project map
 
@@ -39,7 +53,7 @@ Install or upload the skill using [the platform instructions](docs/installation.
 - [Security](SECURITY.md) describes the trust boundary for skills and research sources.
 - [Changelog](CHANGELOG.md) tracks the portable contract, and the [2.0.0 release verification](docs/releases/2.0.0.md) records external smoke-test status.
 
-Build the portable release archive with:
+Build the portable persistent-equity-research release archive with:
 
 ```bash
 python3 tools/package_skill.py

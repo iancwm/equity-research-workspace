@@ -1,6 +1,6 @@
 # Installation and Distribution
 
-Every surface uses the same directory: `skills/persistent-equity-research/`. Do not copy individual files out of it.
+The repository contains two standalone skill directories, `skills/persistent-equity-research/` and `skills/sector-primer/`. Install the skill that matches the task, and do not copy individual files out of it.
 
 ## Claude Code
 
@@ -8,6 +8,7 @@ For one project, copy or link the canonical directory to:
 
 ```text
 .claude/skills/persistent-equity-research/
+.claude/skills/sector-primer/
 ```
 
 For marketplace installation, add this repository and install its plugin:
@@ -17,7 +18,7 @@ For marketplace installation, add this repository and install its plugin:
 /plugin install equity-research@equity-research-skills
 ```
 
-Plugin installations use the namespaced command `/equity-research:persistent-equity-research`; normal task matching can also invoke it automatically.
+Plugin installations use the namespaced commands `/equity-research:persistent-equity-research` and `/equity-research:sector-primer`; normal task matching can also invoke them automatically.
 
 ## Codex
 
@@ -25,13 +26,14 @@ Copy or link the canonical directory into the Codex skills directory:
 
 ```text
 $CODEX_HOME/skills/persistent-equity-research/
+$CODEX_HOME/skills/sector-primer/
 ```
 
-When `CODEX_HOME` is unset, use `~/.codex/skills/persistent-equity-research/`. The included `agents/openai.yaml` adds optional Codex UI metadata without adding tool dependencies or changing automatic invocation.
+When `CODEX_HOME` is unset, use `~/.codex/skills/<skill-name>/`. Each skill's included `agents/openai.yaml` adds optional Codex UI metadata without adding tool dependencies or changing automatic invocation.
 
 ## Hosted Skills APIs
 
-Run `python3 tools/package_skill.py` and upload `dist/persistent-equity-research-2.0.0.zip` as a custom skill. The archive contains one enclosing directory whose name matches the `SKILL.md` name.
+Run `python3 tools/package_skill.py` and upload the resulting persistent-equity-research archive as a custom skill. The archive contains one enclosing directory whose name matches the `SKILL.md` name. For the sector primer, upload the standalone `skills/sector-primer/` directory using the hosted platform's custom-skill packaging format.
 
 - [Claude Skills API guide](https://platform.claude.com/docs/en/build-with-claude/skills-guide)
 - [OpenAI skill creation API](https://developers.openai.com/api/reference/python/resources/skills/methods/create)

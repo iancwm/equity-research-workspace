@@ -8,7 +8,7 @@ Publication tooling is a presentation and composition layer. It must not silentl
 
 ## Preserve the requested publication type
 
-Before drafting or rendering, identify the requested artifact: full initiation of coverage, research update, scenario note, monitoring dashboard, investment-committee brief, presentation, source appendix, or another format.
+Before drafting or rendering, identify the requested artifact: full initiation of coverage, sector primer, research update, scenario note, monitoring dashboard, investment-committee brief, presentation, source appendix, or another format.
 
 - Preserve that artifact type unless the user explicitly asks to change it.
 - Do not turn a full initiation of coverage into an executive brief, dashboard, tear sheet, or presentation-style summary merely to fit a template.
@@ -28,6 +28,13 @@ For a company workspace under `research/<TICKER>/`:
 - `analysis/` contains substantive analytical modules. These are not disposable scratch notes and must not be ignored merely because a shorter file exists under `outputs/`.
 - `outputs/` contains publication-ready views that may already be deliberately compressed for a particular use case.
 - `sources/` contains provenance and source-quality information.
+
+For a sector workspace created by `skills/sector-primer/`:
+
+- `state/` contains the sector scope, ledger, assumptions, contradictions, research gaps, and current context.
+- `data/` contains sector dashboard metrics and company comparable observations with periods, definitions, and source IDs.
+- `outputs/` contains the rendered sector primer, which is a view of the persisted state.
+- `sources/` contains source metadata and provenance for market, industry, and company evidence.
 
 When producing a new full report, synthesize the relevant validated state, data, and analytical modules. Do not simply restyle the shortest existing output unless the user specifically asks to render that output without expansion.
 
