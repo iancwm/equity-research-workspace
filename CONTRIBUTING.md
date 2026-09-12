@@ -2,7 +2,7 @@
 
 ## Authoring principles
 
-- Keep one canonical skill under `skills/persistent-equity-research/`; do not create vendor copies.
+- Keep each canonical skill under `skills/<skill-name>/`; do not create vendor copies.
 - Keep triggering language in the `SKILL.md` description and conditional detail in directly linked references.
 - Prefer capability language over product, model, or reasoning-level assumptions.
 - Add instructions only when they change decisions or protect a real invariant.
@@ -27,7 +27,7 @@ Tests must cover observable behavior rather than generated wording. Any schema c
 
 ## Releases
 
-1. Update `VERSION`, `SKILL.md` metadata, `.claude-plugin/plugin.json`, marketplace metadata, and `CHANGELOG.md`.
+1. Update `VERSION`, affected `SKILL.md` metadata, `.claude-plugin/plugin.json`, marketplace metadata, and `CHANGELOG.md`.
 2. Run all offline tests and build the archive twice to confirm reproducibility.
 3. Smoke-test the archive in Claude Code and Codex.
 4. Upload it once to each supported hosted Skills API, or document why that smoke test was skipped.

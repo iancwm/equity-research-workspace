@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sector Primer"
+  short_description: "Explain sector dynamics, data, and peers"
+  default_prompt: "Use $sector-primer to build an evidence-backed primer on this sector."
