@@ -14,6 +14,8 @@ from __future__ import annotations
 import json
 from typing import Any, Dict, List
 
+from agent_common import name_value_array_schema
+
 SYSTEM_PROMPT = """\
 You are an institutional equity research analyst producing an initiation of coverage.
 
@@ -84,19 +86,7 @@ def _name_value_array(description: str) -> Dict[str, Any]:
     ``strict`` schema validation, which needs fully specified shapes.
     """
 
-    return {
-        "type": "array",
-        "description": description,
-        "items": {
-            "type": "object",
-            "properties": {
-                "name": {"type": "string", "description": "Input name, e.g. peer_pe."},
-                "value": {"type": "string", "description": "Input value as text, e.g. 18.0."},
-            },
-            "required": ["name", "value"],
-            "additionalProperties": False,
-        },
-    }
+    return name_value_array_schema(description)
 
 
 #: Tool vocabulary handed to Claude. Every property is required so that strict
