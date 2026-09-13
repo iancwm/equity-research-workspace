@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "company_name": "Grab Holdings Limited",
+  "ticker": "GRAB",
+  "exchange": "NASDAQ",
+  "benchmark": "MSCI Singapore / S&P 500",
+  "base_currency": "USD",
+  "rating_convention": "Overweight/Equal-weight/Underweight",
+  "status": "active",
+  "created_at": "2026-09-13",
+  "last_research_update": "2026-09-13",
+  "last_publication": "2026-09-13"
+}

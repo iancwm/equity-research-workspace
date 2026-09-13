@@ -1,0 +1,6 @@
+period,revenue,revenue_growth,ebit_margin,ebit,net_income,eps,cfo,capex,fcf,assumption_set
+FY2026E,4125,22.4,5.7,235,386,0.094,,214,475,base
+FY2027E,4826,17.0,9.7,470,570,0.140,,241,738,base
+FY2028E,5550,15.0,16.0,889,893,0.220,,266,1170,base
+FY2028E,4752,8.0,8.0,382,495,0.115,,261,550,bear
+FY2028E,6019,19.0,16.6,998,986,0.260,,271,1312,bull

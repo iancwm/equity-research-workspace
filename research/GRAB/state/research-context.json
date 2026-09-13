@@ -1,0 +1,21 @@
+{
+  "company_name": "Grab Holdings Limited",
+  "ticker": "GRAB",
+  "exchange": "NASDAQ",
+  "industry": "Southeast Asian on-demand superapp: ride-hailing/mobility, food & grocery delivery, digital financial services (payments, lending, digital banking, insurance)",
+  "geography": "Singapore-headquartered; operations across Singapore, Malaysia, Indonesia, Thailand, Vietnam, Philippines, Cambodia, Myanmar (~900 cities, 8 SEA countries)",
+  "research_date": "2026-09-13",
+  "benchmark": "MSCI Singapore / S&P 500 (US-listed ADS-equivalent Class A ordinary shares); regional comp set: Uber, GoTo, Sea Limited, Meituan, DoorDash",
+  "base_currency": "USD",
+  "forecast_horizon_years": 3,
+  "rating_convention": "Overweight/Equal-weight/Underweight",
+  "special_questions": [
+    "Is Grab's path to Group profitability (first full-year net profit in FY2025) structurally durable or dependent on non-operating items (net finance income, fair-value gains on convertible note derivative, share-based comp normalization)?",
+    "Does Financial Services (digital banking + lending) reach segment-level Adjusted EBITDA breakeven before its widening losses offset Mobility/Deliveries margin gains?",
+    "How much of Grab's 2028 targets ($1.5bn Adjusted EBITDA, 80% FCF conversion) depend on continued benign competitive intensity in Deliveries given Foodpanda's ownership uncertainty (potential ShopeeFood or Meituan acquirer) and re-escalating price competition?",
+    "What is the probability-weighted impact of a Grab-GoTo combination (repeatedly rumored, repeatedly denied) on regional pricing power and Grab's multiple?",
+    "How exposed is the investment case to Southeast Asian gig-worker regulatory risk (Vietnam National Competition Commission review of commissions/fares opened September 2026; broader ASEAN driver-classification risk)?",
+    "Is the current ~9-10x forward EV/EBITDA multiple pricing a reasonable base case, or does it already embed most of the 2026-2028 EBITDA ramp, leaving asymmetric downside to competitive or regulatory shocks?"
+  ],
+  "existing_state": false
+}

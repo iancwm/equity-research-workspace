@@ -1,0 +1,7 @@
+scenario,method,assumption_set,implied_equity_value,shares,implied_price,notes
+bear,EV/EBITDA_FY2026E_near_term_check,bear,9120,4100,2.22,"7.0x EV/Adj.EBITDA on FY2026E Adj. EBITDA $660m (A-02 bear) + $4.5bn net cash (A-12 bear); undiscounted near-term sanity check"
+base,EV/EBITDA_FY2026E_near_term_check,base,13430,4090,3.28,"11.0x EV/Adj.EBITDA on FY2026E Adj. EBITDA $730m (A-02 base, guidance midpoint) + $5.4bn net cash (A-12 base); undiscounted near-term sanity check, close to current $3.05 price"
+bull,EV/EBITDA_FY2026E_near_term_check,bull,16257,4100,3.97,"13.5x EV/Adj.EBITDA on FY2026E Adj. EBITDA $745m (A-02 bull) + $6.2bn net cash (A-12 bull); undiscounted near-term sanity check"
+bear,EV/EBITDA_FY2028E_discounted,bear,11500,4300,2.03,"7.0x EV/Adj.EBITDA (A-11 bear) on FY2028E Adj. EBITDA $1,000m (A-05 bear) + $4.5bn net cash (A-12 bear); shares per A-10 bear; PV'd 2.2 years at 13% (A-13 bear)"
+base,EV/EBITDA_FY2028E_discounted,base,21900,4050,4.29,"11.0x EV/Adj.EBITDA (A-11 base) on FY2028E Adj. EBITDA $1,500m -- management's own 2028 target (A-05 base) + $5.4bn net cash (A-12 base); shares per A-10 base; PV'd 2.2 years at 11% (A-13 base). Primary base-case price target."
+bull,EV/EBITDA_FY2028E_discounted,bull,27800,3800,5.99,"13.5x EV/Adj.EBITDA (A-11 bull) on FY2028E Adj. EBITDA $1,600m (A-05 bull) + $6.2bn net cash (A-12 bull); shares per A-10 bull; PV'd 2.2 years at 9.5% (A-13 bull)"

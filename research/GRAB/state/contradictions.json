@@ -1,0 +1,40 @@
+{
+  "contradictions": [
+    {
+      "id": "C-01",
+      "summary": "Grab-GoTo merger status is unresolved and contradictory across the source record: reports in early-to-mid 2025 described 'accelerated' merger talks targeting a 2025 deal; Grab formally denied being in any discussions in June 2025 ('not in discussions... no definitive agreements'); yet speculation resumed by November 2025-2026 with reports of Indonesian sovereign-fund (Danantara) involvement. The evidence does not resolve whether talks are genuinely dormant, genuinely active but unconfirmable, or a recurring market narrative with no current substance.",
+      "ledger_ids": ["CAT-02"],
+      "source_ids": ["S007"],
+      "status": "open",
+      "resolution": null,
+      "last_updated": "2026-09-13"
+    },
+    {
+      "id": "C-02",
+      "summary": "Grab's own reported Group Adjusted EBITDA growth guidance (FY2026: 40-44% initially, raised to 44-48%) implies a materially faster near-term EBITDA ramp than is consistent with a straight-line path to the disclosed 2028 target of $1.5bn from the FY2025 base of $500m (which requires only a ~44% CAGR over three years including FY2026-FY2028). If FY2026 alone grows EBITDA ~46% at the guidance midpoint, the FY2027-FY2028 required CAGR to reach $1.5bn falls to roughly 43%, i.e., a deceleration is implicitly required after FY2026 -- yet management commentary (Q2 2026 earnings remarks) emphasizes accelerating, not decelerating, momentum. This is a structural tension in the base case rather than a resolved analytical view.",
+      "ledger_ids": ["CO-05", "CO-07"],
+      "source_ids": ["S001", "S002"],
+      "status": "open",
+      "resolution": null,
+      "last_updated": "2026-09-13"
+    },
+    {
+      "id": "C-03",
+      "summary": "Sell-side consensus is 'Strong Buy' with an average price target of $5.86 (implying ~92% upside from $3.05), while the stock trades near its 52-week low, 54% below its 52-week high, despite 18 consecutive quarters of Adjusted EBITDA growth and a guidance raise at the most recent print. This divergence between fundamental momentum/sell-side sentiment and price action is not resolved by the evidence gathered in this pass -- it may reflect (a) a genuine market mispricing/variant-perception opportunity (per DASH-06), (b) sell-side analysts lagging a justified de-rating on competitive/regulatory risk not yet fully reflected in published price targets, or (c) index/flow-driven technical pressure (e.g., the Uber stake overhang, RISK-02) unrelated to fundamentals.",
+      "ledger_ids": ["VAL-05", "VAL-06", "DASH-06"],
+      "source_ids": ["S011", "S012"],
+      "status": "open",
+      "resolution": null,
+      "last_updated": "2026-09-13"
+    },
+    {
+      "id": "C-04",
+      "summary": "GXS Group's independently reported FY2025 net loss (S$208.1m, per fintech-press coverage of the regulated bank's own filings) does not map cleanly onto Grab's consolidated Financial Services Segment Adjusted EBITDA loss (-$110m FY2025). The gap could reflect differing consolidation scope (Grab may not own 100% of GXS Group, or GXBank Malaysia/SuperBank Indonesia results are reported separately from the Singapore GXS entity), non-IFRS adjustments excluded from Segment Adjusted EBITDA, or currency/period differences. This was not reconciled in this research pass and is flagged rather than resolved.",
+      "ledger_ids": ["DASH-07"],
+      "source_ids": ["S002", "S006"],
+      "status": "open",
+      "resolution": null,
+      "last_updated": "2026-09-13"
+    }
+  ]
+}
