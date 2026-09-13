@@ -2,6 +2,17 @@
 
 All notable changes follow [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+
+- Analyst agent orchestration skill (Phase 1 MVP): drives an initiation of coverage
+  from evidence through a Claude tool-use analysis into persisted workspace state.
+- Workspace adapter exposing a `ResearchWorkspace` read/modify/write surface over
+  the v2 workspace format, and translating Claude tool calls into ledger writes.
+- Mock company evidence source, initiation report generator, analyst system prompt
+  and tool schemas, an offline demo script, and an end-to-end integration test.
+
 ## [2.1.0] - 2026-09-12
 
 ### Added
