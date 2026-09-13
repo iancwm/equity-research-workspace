@@ -467,6 +467,32 @@ class ResearchWorkspace:
         records.append(record)
         return assumption_id
 
+    def find_active_assumption(self, name: str) -> Optional[Dict[str, Any]]:
+        """Return the most recent active assumption record with this name, if any.
+
+        Used by report types that revise a prior workspace (e.g. an earnings
+        update) to detect whether a named driver actually changed before
+        deciding whether to supersede it.
+        """
+
+        target = _clean_text(name).casefold()
+        for record in reversed(self.assumptions.get("assumptions", [])):
+            if (
+                record.get("status") == "active"
+                and _clean_text(record.get("name")).casefold() == target
+            ):
+                return record
+        return None
+
+    def mark_assumption_stale(self, assumption_id: str) -> bool:
+        """Mark one assumption record ``stale`` by id. Returns whether it was found."""
+
+        for record in self.assumptions.get("assumptions", []):
+            if record.get("id") == assumption_id:
+                record["status"] = "stale"
+                return True
+        return False
+
     def add_contradiction(
         self,
         summary: str,

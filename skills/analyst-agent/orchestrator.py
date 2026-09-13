@@ -11,31 +11,26 @@ Exceptions propagate. The caller decides how to recover.
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import data_sources
 import prompts
 import report_generators
+from agent_common import (
+    AgentRunError,
+    DEFAULT_MAX_TOKENS,
+    DEFAULT_MAX_TURNS,
+    DEFAULT_MODEL,
+    build_client,
+    run_tool_loop,
+)
 from workspace_adapter import (
     ResearchWorkspace,
     SOURCE_INGESTION_NODE,
     ToolResult,
     update_workspace_from_claude,
 )
-
-#: Highest-reasoning model available for research synthesis.
-#:
-#: The MVP specification named ``claude-opus-4-5``; this is its current
-#: equivalent. Override per-agent with the ``model`` constructor argument.
-DEFAULT_MODEL = "claude-opus-5"
-
-#: Non-streaming ceiling that stays clear of SDK HTTP timeouts.
-DEFAULT_MAX_TOKENS = 16000
-
-#: Safety valve on the tool-use loop. Each turn is one API round trip.
-DEFAULT_MAX_TURNS = 12
 
 #: Minimum structured output for a run to count as complete coverage.
 MINIMUM_ASSUMPTIONS = 3
@@ -46,7 +41,7 @@ MINIMUM_SOURCES = 2
 INITIATION_OUTPUT = "outputs/initiation-of-coverage.md"
 
 
-class AnalystAgentError(RuntimeError):
+class AnalystAgentError(AgentRunError):
     """Raised when the orchestrator cannot complete a coverage run."""
 
 
@@ -63,14 +58,6 @@ def _display_metric(value: Any, unit: str) -> str:
         except (TypeError, ValueError):
             return f"{value}"
     return f"{value} {unit}".strip()
-
-
-def _block_attribute(block: Any, name: str, default: Any = None) -> Any:
-    """Read an attribute from an SDK content block or a plain dict."""
-
-    if isinstance(block, dict):
-        return block.get(name, default)
-    return getattr(block, name, default)
 
 
 class AnalystAgent:
@@ -102,7 +89,7 @@ class AnalystAgent:
         self.workspace = ResearchWorkspace.load(self.workspace_root)
         self.model = model
         self.max_turns = max_turns
-        self._api_key = anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
+        self._api_key = anthropic_api_key
         self._client = client
 
     # ------------------------------------------------------------------
@@ -118,17 +105,7 @@ class AnalystAgent:
         """
 
         if self._client is None:
-            try:
-                import anthropic
-            except ImportError as exc:  # pragma: no cover - depends on host env
-                raise AnalystAgentError(
-                    "the anthropic SDK is required for live runs: pip install anthropic"
-                ) from exc
-            self._client = (
-                anthropic.Anthropic(api_key=self._api_key)
-                if self._api_key
-                else anthropic.Anthropic()
-            )
+            self._client = build_client(self._api_key, None)
         return self._client
 
     # ------------------------------------------------------------------
@@ -266,52 +243,15 @@ class AnalystAgent:
         cannot leave the ledger half-written.
         """
 
-        messages: List[Dict[str, Any]] = [{"role": "user", "content": user_prompt}]
-        collected: List[ToolResult] = []
-
-        for _ in range(self.max_turns):
-            response = self.client.messages.create(
-                model=self.model,
-                max_tokens=DEFAULT_MAX_TOKENS,
-                system=prompts.SYSTEM_PROMPT,
-                tools=prompts.TOOL_DEFINITIONS,
-                thinking={"type": "adaptive"},
-                messages=messages,
-            )
-            content = list(getattr(response, "content", []) or [])
-            stop_reason = getattr(response, "stop_reason", None)
-
-            if stop_reason == "pause_turn":
-                messages.append({"role": "assistant", "content": content})
-                continue
-
-            tool_blocks = [
-                block for block in content if _block_attribute(block, "type") == "tool_use"
-            ]
-            if not tool_blocks:
-                break
-
-            messages.append({"role": "assistant", "content": content})
-            tool_results = []
-            for block in tool_blocks:
-                collected.append(
-                    ToolResult(
-                        name=str(_block_attribute(block, "name", "")),
-                        input=_block_attribute(block, "input", {}) or {},
-                        tool_use_id=str(_block_attribute(block, "id", "")),
-                    )
-                )
-                tool_results.append(
-                    {
-                        "type": "tool_result",
-                        "tool_use_id": _block_attribute(block, "id", ""),
-                        "content": "recorded",
-                    }
-                )
-            # All results for one assistant turn go back in a single user message.
-            messages.append({"role": "user", "content": tool_results})
-
-        return collected
+        return run_tool_loop(
+            client=self.client,
+            model=self.model,
+            system_prompt=prompts.SYSTEM_PROMPT,
+            tool_definitions=prompts.TOOL_DEFINITIONS,
+            user_prompt=user_prompt,
+            max_turns=self.max_turns,
+            max_tokens=DEFAULT_MAX_TOKENS,
+        )
 
     # ------------------------------------------------------------------
     # Public API
@@ -437,3 +377,69 @@ class AnalystAgent:
         if not validation.valid:
             return "failed"
         return "partial" if notes else "success"
+
+    # ------------------------------------------------------------------
+    # Other report types
+    # ------------------------------------------------------------------
+    #
+    # Sector Report, Quarterly Outlook, and Trading Report are not company-
+    # workspace-bound the way an initiation or its earnings update are (a
+    # sector report has its own sector-primer workspace; an outlook and a
+    # trading report have none at all), so they are not wrapped here. Call
+    # ``sector_report.SectorReportAgent``, ``outlook_report.run_quarterly_outlook``,
+    # and ``trading_report.run_trading_report`` directly. See SKILL.md.
+
+    def earnings_update(
+        self,
+        earnings_date: str,
+        eps_actual: float,
+        eps_consensus: float,
+        revenue_actual: float,
+        revenue_consensus: float,
+        guidance_change: Optional[str],
+        earnings_call_transcript_url: Optional[str] = None,
+        max_evidence_sources: int = 5,
+    ) -> Dict[str, Any]:
+        """Revise this same company workspace after a quarterly earnings release.
+
+        A thin delegation to :class:`earnings_update.EarningsUpdateAgent`,
+        reusing this agent's workspace, model, client, and API key so that a
+        caller already holding an ``AnalystAgent`` for a company (e.g. from a
+        prior :meth:`initiate_coverage` run) can chain straight into an
+        earnings update without re-supplying connection details.
+
+        Args:
+            earnings_date: Release date as ``YYYY-MM-DD``.
+            eps_actual: Reported EPS.
+            eps_consensus: Prior consensus EPS estimate.
+            revenue_actual: Reported revenue, in the workspace's reporting units.
+            revenue_consensus: Prior consensus revenue estimate, same units.
+            guidance_change: ``"raised"``, ``"lowered"``, ``"in-line"``, or ``None``.
+            earnings_call_transcript_url: Transcript URL, if available.
+            max_evidence_sources: Cap on new evidence sources registered.
+
+        Returns:
+            See :meth:`earnings_update.EarningsUpdateAgent.earnings_update`.
+        """
+
+        # Imported here, not at module scope, to keep earnings_update.py from
+        # having to be present for callers who only ever run initiate_coverage.
+        from earnings_update import EarningsUpdateAgent
+
+        agent = EarningsUpdateAgent(
+            workspace_root=str(self.workspace_root),
+            anthropic_api_key=self._api_key,
+            model=self.model,
+            client=self._client,
+            max_turns=self.max_turns,
+        )
+        return agent.earnings_update(
+            earnings_date=earnings_date,
+            eps_actual=eps_actual,
+            eps_consensus=eps_consensus,
+            revenue_actual=revenue_actual,
+            revenue_consensus=revenue_consensus,
+            guidance_change=guidance_change,
+            earnings_call_transcript_url=earnings_call_transcript_url,
+            max_evidence_sources=max_evidence_sources,
+        )

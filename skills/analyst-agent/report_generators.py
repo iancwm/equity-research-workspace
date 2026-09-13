@@ -15,6 +15,7 @@ from __future__ import annotations
 import datetime as dt
 from typing import Any, Dict, List, Optional, Sequence
 
+from render_helpers import format_number, format_price, markdown_table, source_label
 from workspace_adapter import SCENARIO_METHOD_PREFIX, ResearchWorkspace
 
 #: Sections of the repository's full initiation standard that Phase 1 state
@@ -32,44 +33,23 @@ PHASE_1_UNCOVERED_SECTIONS = (
 def _format_number(value: Any, digits: int = 2) -> str:
     """Render a number for display, passing non-numeric values through as text."""
 
-    if value is None or value == "":
-        return "n/a"
-    try:
-        number = float(value)
-    except (TypeError, ValueError):
-        return str(value)
-    if number == int(number) and abs(number) < 1e15:
-        return f"{int(number):,}"
-    return f"{number:,.{digits}f}"
+    return format_number(value, digits)
 
 
 def _format_price(value: Any) -> str:
     """Render a per-share value at fixed precision, so a column reads evenly."""
 
-    if value is None or value == "":
-        return "n/a"
-    try:
-        return f"{float(value):,.2f}"
-    except (TypeError, ValueError):
-        return str(value)
+    return format_price(value)
 
 
 def _markdown_table(headers: Sequence[str], rows: Sequence[Sequence[str]]) -> str:
     """Render a GitHub-flavoured Markdown table."""
 
-    lines = [
-        "| " + " | ".join(headers) + " |",
-        "| " + " | ".join("---" for _ in headers) + " |",
-    ]
-    for row in rows:
-        lines.append("| " + " | ".join(str(cell) for cell in row) + " |")
-    return "\n".join(lines)
+    return markdown_table(headers, rows)
 
 
 def _source_label(workspace: ResearchWorkspace, source_ids: Sequence[str]) -> str:
-    known = {str(record.get("source_id")) for record in workspace.sources}
-    resolved = [identifier for identifier in source_ids if identifier in known]
-    return ", ".join(resolved) if resolved else "unsourced"
+    return source_label(workspace.known_source_ids, source_ids)
 
 
 def _cover(workspace: ResearchWorkspace, analyst: str) -> str:
