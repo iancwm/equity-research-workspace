@@ -377,3 +377,69 @@ class AnalystAgent:
         if not validation.valid:
             return "failed"
         return "partial" if notes else "success"
+
+    # ------------------------------------------------------------------
+    # Other report types
+    # ------------------------------------------------------------------
+    #
+    # Sector Report, Quarterly Outlook, and Trading Report are not company-
+    # workspace-bound the way an initiation or its earnings update are (a
+    # sector report has its own sector-primer workspace; an outlook and a
+    # trading report have none at all), so they are not wrapped here. Call
+    # ``sector_report.SectorReportAgent``, ``outlook_report.run_quarterly_outlook``,
+    # and ``trading_report.run_trading_report`` directly. See SKILL.md.
+
+    def earnings_update(
+        self,
+        earnings_date: str,
+        eps_actual: float,
+        eps_consensus: float,
+        revenue_actual: float,
+        revenue_consensus: float,
+        guidance_change: Optional[str],
+        earnings_call_transcript_url: Optional[str] = None,
+        max_evidence_sources: int = 5,
+    ) -> Dict[str, Any]:
+        """Revise this same company workspace after a quarterly earnings release.
+
+        A thin delegation to :class:`earnings_update.EarningsUpdateAgent`,
+        reusing this agent's workspace, model, client, and API key so that a
+        caller already holding an ``AnalystAgent`` for a company (e.g. from a
+        prior :meth:`initiate_coverage` run) can chain straight into an
+        earnings update without re-supplying connection details.
+
+        Args:
+            earnings_date: Release date as ``YYYY-MM-DD``.
+            eps_actual: Reported EPS.
+            eps_consensus: Prior consensus EPS estimate.
+            revenue_actual: Reported revenue, in the workspace's reporting units.
+            revenue_consensus: Prior consensus revenue estimate, same units.
+            guidance_change: ``"raised"``, ``"lowered"``, ``"in-line"``, or ``None``.
+            earnings_call_transcript_url: Transcript URL, if available.
+            max_evidence_sources: Cap on new evidence sources registered.
+
+        Returns:
+            See :meth:`earnings_update.EarningsUpdateAgent.earnings_update`.
+        """
+
+        # Imported here, not at module scope, to keep earnings_update.py from
+        # having to be present for callers who only ever run initiate_coverage.
+        from earnings_update import EarningsUpdateAgent
+
+        agent = EarningsUpdateAgent(
+            workspace_root=str(self.workspace_root),
+            anthropic_api_key=self._api_key,
+            model=self.model,
+            client=self._client,
+            max_turns=self.max_turns,
+        )
+        return agent.earnings_update(
+            earnings_date=earnings_date,
+            eps_actual=eps_actual,
+            eps_consensus=eps_consensus,
+            revenue_actual=revenue_actual,
+            revenue_consensus=revenue_consensus,
+            guidance_change=guidance_change,
+            earnings_call_transcript_url=earnings_call_transcript_url,
+            max_evidence_sources=max_evidence_sources,
+        )
